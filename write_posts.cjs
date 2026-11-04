@@ -1,0 +1,52 @@
+﻿const fs = require('fs');
+
+const lines = [];
+
+// Imports
+lines.push("import { useState, useEffect, useRef } from 'react';");
+lines.push("import { MoreHorizontal, Search, Trash2, Pencil, EyeOff, Eye, Pin, PinOff, Flag, RefreshCw, ChevronLeft, ChevronRight, X, Video, BarChart3, Heart, MessageSquare, Repeat2, BookmarkIcon, Share2, TrendingUp, AlertTriangle, Lock, Unlock, SortAsc, SortDesc, Download, Copy, Zap, Globe } from 'lucide-react';");
+lines.push("import { toast } from 'sonner';");
+lines.push("import { format } from 'date-fns';");
+lines.push("import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';");
+lines.push("import { Button } from '@/components/ui/button';");
+lines.push("import { Card, CardContent } from '@/components/ui/card';");
+lines.push("import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';");
+lines.push("import { Input } from '@/components/ui/input';");
+lines.push("import { Badge } from '@/components/ui/badge';");
+lines.push("import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog';");
+lines.push("import { Textarea } from '@/components/ui/textarea';");
+lines.push("import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';");
+lines.push("import { Checkbox } from '@/components/ui/checkbox';");
+lines.push("import { Separator } from '@/components/ui/separator';");
+lines.push("import { Skeleton } from '@/components/ui/skeleton';");
+lines.push("import { Label } from '@/components/ui/label';");
+lines.push("import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';");
+lines.push("import { supabase } from '@/lib/supabase';");
+lines.push("import { formatTimeAgo } from '@/hooks/use-supabase';");
+lines.push("");
+lines.push("const PAGE_SIZE = 25;");
+lines.push("type SortKey = 'created_at' | 'likes_count' | 'views_count' | 'replies_count' | 'spam_score';");
+lines.push("type FilterTab = 'all' | 'pinned' | 'anonymous' | 'boosted' | 'subscriber_only' | 'with_media';");
+lines.push("");
+lines.push("function getUser(post: any) {");
+lines.push("  if (!post.user) return null;");
+lines.push("  return Array.isArray(post.user) ? post.user[0] : post.user;");
+lines.push("}");
+lines.push("");
+lines.push("function formatCount(n: number) {");
+lines.push("  if (!n) return '0';");
+lines.push("  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';");
+lines.push("  if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K';");
+lines.push("  return n.toString();");
+lines.push("}");
+lines.push("");
+lines.push("function getSpamBadge(score: number) {");
+lines.push("  if (!score || score < 0.3) return null;");
+lines.push("  if (score < 0.6) return <Badge className=\"bg-yellow-500/10 text-yellow-600 text-[10px]\">Spam Risk</Badge>;");
+lines.push("  return <Badge className=\"bg-red-500/10 text-red-500 text-[10px]\">High Spam</Badge>;");
+lines.push("}");
+lines.push("");
+
+const content = lines.join('\n');
+fs.writeFileSync('c:/Users/ARAFATH/StudioProjects/dak-admin-next/src/pages/PostsPage.tsx', content, 'utf8');
+console.log('Base written, lines:', lines.length);
